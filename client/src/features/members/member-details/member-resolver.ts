@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import type { Member } from '../../../types/member';
 import { MemberService } from '../../../core/services/member-service';
 
-export const memberResolver: ResolveFn<Member> = (route, state) => {
+export const memberResolver: ResolveFn<Member> = (route) => {
   const memberService = inject(MemberService);
   const router = inject(Router);
   const memberId = route.paramMap.get('id');

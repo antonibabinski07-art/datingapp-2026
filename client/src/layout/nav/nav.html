@@ -5,7 +5,7 @@
             routerLinkActive="text-accent"
             [routerLinkActiveOptions]="{exact: true}"
             [ngClass]="{
-                'text-white': !isRootRoute()
+                'text-white': !isRootRoute
             }"
             class="flex items-center gap-3 max-h-16 border-r-white border-r-2 pr-6">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
@@ -20,6 +20,9 @@
             <a routerLink="/messages" routerLinkActive="text-accent">Messages</a>
             }
             <a routerLink="/errors" routerLinkActive="text-accent">Errors</a>
+            @if(busyService.busyCount() > 0) {
+                <span class="loading loading-spinner text-accent"></span>
+            }
         </nav>
         <div class="flex align-middle ml-auto gap-3">
             <div tabindex="1" class="dropdown mr-5 dropdown-end">
@@ -46,7 +49,7 @@
                     <span>{{ user.displayName }}</span>
                 </div>
                 <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                    <li><a>Edit account</a></li>
+                    <li><a (click)="editAccount()" [routerLink]="['/members', user.id]">Edit account</a></li>
                     <li><button (click)="logout()">Logout</button></li>
                 </ul>
             </div>
