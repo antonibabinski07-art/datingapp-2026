@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs';
 
 import type { LoginData, RegisterData, User } from '../../types/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: "root"
@@ -10,8 +11,7 @@ import type { LoginData, RegisterData, User } from '../../types/user';
 export class AccountService {
     private readonly http = inject(HttpClient);
     public readonly currentUser = signal<User | null>(null);
-    
-    private readonly baseUrl = "https://localhost:5001/api/";
+    private apiBaseUrl = environment.apiUrl;
     
     setCurrentUser(user: User) {
         localStorage.setItem('user', JSON.stringify(user));
@@ -20,7 +20,7 @@ export class AccountService {
 
     register(creds: RegisterData) {
 
-        return this.http.post<User>(this.baseUrl + 'account/register', creds).pipe(
+        return this.http.post<User>(this.apiBaseUrl + 'account/register', creds).pipe(
             tap(user => {
                 if(user) {
                     this.setCurrentUser(user);
@@ -31,7 +31,7 @@ export class AccountService {
 
     login(creds: LoginData) {
 
-        return this.http.post<User>(this.baseUrl + "account/login", creds).pipe(
+        return this.http.post<User>(this.apiBaseUrl + "account/login", creds).pipe(
             tap(user => {
                 if(user) {
                     this.setCurrentUser(user);

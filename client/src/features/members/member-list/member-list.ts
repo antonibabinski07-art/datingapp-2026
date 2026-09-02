@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ import { MemberCard } from '../member-card/member-card';
 export class MemberList {
   private memberService = inject(MemberService);
   protected members$: Observable<Member[]>
-
+  
   constructor() {
     this.members$ = this.memberService.getMembers();
   }
