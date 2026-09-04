@@ -13,4 +13,8 @@ export interface LoginData {
 
 export interface RegisterData extends LoginData {
     displayName: string;
+    dateOfBirth: string,
+    city: string;
+    country: string;
+    gender: string;
 }

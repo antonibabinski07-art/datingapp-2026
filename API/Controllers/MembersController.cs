@@ -2,10 +2,8 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
-using API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace API.Controllers;
 

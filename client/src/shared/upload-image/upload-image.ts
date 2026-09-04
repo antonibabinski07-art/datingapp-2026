@@ -50,7 +50,7 @@ export class UploadImage {
 
   private previewImage(file: File) {
     const reader = new FileReader();
-    reader.onload = (ev) => this.imageSrc.set(ev.target?.result);
+    reader.onload = (event) => this.imageSrc.set(event.target?.result);
     reader.readAsDataURL(file);
   }
 }

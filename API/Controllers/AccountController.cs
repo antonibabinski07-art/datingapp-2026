@@ -23,7 +23,15 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
             Email = registerDto.Email,
             DisplayName = registerDto.DisplayName,
             PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmac.Key
+            PasswordSalt = hmac.Key,
+            Member = new Member
+            {
+                DisplayName = registerDto.DisplayName,
+                DateOfBirth = registerDto.DateOfBirth,
+                City = registerDto.City,
+                Country = registerDto.Country,
+                Gender = registerDto.Gender
+            }
         };
 
         context.Users.Add(user);

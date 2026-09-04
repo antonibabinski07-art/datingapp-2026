@@ -1,0 +1,29 @@
+<label class="floating-label flex flex-col">
+    <span>{{ label() }}</span>
+    <input
+        [min]="minDate()"
+        [max]="maxDate()"
+        class="input w-full"
+        [class.input-error]="control.invalid && control.touched"
+        [class.input-success]="control.valid && control.touched"
+        [placeholder]="label()"
+        [formControl]="control"
+        [type]="type()">
+    @if(control.hasError('required') && control.touched) {
+        <div class="text-error text-xs p-1.5 pb-0">{{ label() }} is required</div>
+    }
+    @if(control.hasError('email') && control.touched) {
+        <div class="text-error text-xs p-1.5 pb-0">Email address is invalid</div>
+    }
+    @if(control.hasError('minlength') && control.touched) {
+        <div class="text-error text-xs p-1.5 pb-0">
+            {{ label() }} must be at least {{ control.errors?.['minlength'].requiredLength }} characters long
+        </div>
+    }
+    @if(control.hasError('passwordMismatch') && control.touched) {
+        <div class="text-error text-xs p-1.5 pb-0">Passwords do not match</div>
+    }
+    @if(control.hasError('invalidDate') && control.touched) {
+        <div class="text-error text-xs p-1.5 pb-0">Date of birth is invalid</div>
+    }
+</label>
